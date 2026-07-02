@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   LUMINA DENTAL — DESIGN TOKENS
+   Light: warm porcelain background, deep teal + champagne gold.
+   Dark:  ink background, teal recedes, gold carries the luxury cue.
+------------------------------------------------------------------- */
+@layer base {
+  :root {
+    --background: 60 20% 98%;
+    --foreground: 180 20% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 180 20% 7%;
+    --muted: 150 8% 95%;
+    --muted-foreground: 180 6% 40%;
+    --border: 150 8% 89%;
+    --input: 150 8% 89%;
+    --ring: 174 74% 25%;
+    --destructive: 4 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 180 22% 6%;
+    --foreground: 60 20% 96%;
+    --card: 180 20% 8%;
+    --card-foreground: 60 20% 96%;
+    --muted: 180 14% 12%;
+    --muted-foreground: 150 8% 65%;
+    --border: 180 14% 16%;
+    --input: 180 14% 16%;
+    --ring: 45 60% 55%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "ss01", "ss02", "kern";
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink dark:text-porcelain;
+  }
+
+  ::selection {
+    background-color: #D4AF37;
+    color: #0B1414;
+  }
+
+  /* Visible, elegant keyboard focus — never removed, only restyled */
+  :focus-visible {
+    outline: 2px solid #0F766E;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Hairline section divider used as the recurring "instrument line" motif */
+  .hairline {
+    @apply border-t border-line dark:border-white/10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.22em] text-primary dark:text-accent;
+  }
+
+  .section-padding {
+    @apply py-20 sm:py-24 lg:py-30;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+}
